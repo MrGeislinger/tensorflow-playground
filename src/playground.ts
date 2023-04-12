@@ -879,6 +879,19 @@ function updateUI(firstStep = false) {
     return n.toFixed(3);
   }
 
+  //
+  d3.select("#model_points").text(humanReadable(state.numHiddenLayers));
+  // (1+i) * N * iters
+  let point_str = 0;
+  for (var i=0; i < state.networkShape.length; i++) {
+    point_str += (1+i) * state.networkShape[i];
+  }
+  point_str = iter * point_str / 10000;
+  d3.select("#model_points").text(
+    humanReadable(point_str)
+  );
+
+  //////////
   // Update loss and iteration number.
   d3.select("#loss-train").text(humanReadable(lossTrain));
   d3.select("#loss-test").text(humanReadable(lossTest));
